@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>    
+    <script asyn src='main.js'></script>
+    <!-- asyn 다운로드 실행 절약 : DOM 요소 조작시 -->
+    <!-- 다운로드가 먼저된 순서대로 실행됨 : 순서의존적 JS라면 문제가 있음 -->
+    <script defer src='main.js'></script>
+    <!-- defer  -->
+    <!-- 필요한 JS 다 받은 다음 순서대로 실행한다 -->
+</head>
+<body>
+    <div> </div>
+    <!-- <script src='main.js'></script> -->
+    <!-- JS 의존적 사이트라면 서버에서 받아오는 데까지 기다린다 -->
+</body>
+</html>
