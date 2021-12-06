@@ -5,3 +5,26 @@
 3. 리턴 값
 - input & output
 - function name
+
+2021-12-06 6강 class vs object
+class나 object가 없다면...
+
+class person{
+    name;
+    age;
+    speak();
+}
+class :: fields, methods
+객체지향 언어
+- 사물을 class, object로 정의하여 프로젝트를 짜는 게 필요하다
+
+
+1. class : 청사진, 템플릿
+- template 자체에는 데이터가 없다 
+- declare once
+- no data in
+
+2. object : 실제 데이터 있음
+- instance of a class
+- created many times
+- data in (메모리에도 올라감)
