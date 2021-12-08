@@ -28,3 +28,7 @@ class :: fields, methods
 - instance of a class
 - created many times
 - data in (메모리에도 올라감)
+
+======== 2021-12-08 ========
+array, map, set, list, single linked list, ...
+=> 알로리즘 :: 효율성
