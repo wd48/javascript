@@ -1,3 +1,27 @@
+interface Array<T> {
+    /**
+     * Returns the value of the first element in the array where predicate is true, and undefined
+     * otherwise.
+     * :: 조건자 (predicate)가 참(true)인 경우 배열의 첫번째 요소를 반환
+     * :: 그렇지 않으면 undefined 반환
+     * 
+     * @param predicate find calls predicate once for each element of the array, in ascending
+     * order, until it finds one where predicate returns true. If such an element is found, find
+     * immediately returns that element value. Otherwise, find returns undefined.
+     * : find = predicate가 true 반환하는 항목을 찾을때까지 배열의 각 요소에 대해 
+     * : 조건자를 오름차순(ASC)으로 한번 씩 호출한다
+     * :: true를 반환하는 요소가 발견되면 find는 즉시 해당 요소값을 반환한다.
+     * :: 그렇지 않으면 undefined 반환
+     * 
+     * @param thisArg If provided, it will be used as the this value for each invocation of
+     * predicate. If it is not provided, undefined is used instead.
+     * 
+     * 
+     */
+    find<S extends T>(predicate: (this: void, value: T, index: number, obj: T[]) => value is S, thisArg?: any): S | undefined;
+    find(predicate: (value: T, index: number, obj: T[]) => unknown, thisArg?: any): T | undefined;
+}
+
 /**
  * Array API :: lecture 8 homework
  */
@@ -121,3 +145,10 @@ interface Array<T>{
     sort(compareFn?: (a: T, b: T) => number): this;
 
 }
+
+/**
+     * Split a string into substrings using the specified separator and return them as an array.
+     * @param splitter An object that can split a string.
+     * @param limit A value used to limit the number of elements returned in the array.
+     */
+ split(splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[];
