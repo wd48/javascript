@@ -104,7 +104,7 @@ interface Array<T>{
      * If the array is empty, undefined is returned and the array is not modified.
      * :: 배열이 비었으면 undefined 반환, 배열 수정되지 않음
      */
-     shift(): T | undefined;    
+    shift(): T | undefined;    
 
     /**
      * Returns a copy of a section of an array.
@@ -123,7 +123,7 @@ interface Array<T>{
      * : 배열에서 지정된 부분의 끝 인덱스 값, 이것은 인덱스 끝에 있는 요소를 제외한다
      * :: end가 정의되지 않으면 slice 메소드는 배열의 끝까지 범위로 잡아 확장한다
      */
-     slice(start?: number, end?: number): T[];
+    slice(start?: number, end?: number): T[];
 
     /**
      * Sorts an array in place.
@@ -144,11 +144,99 @@ interface Array<T>{
      */
     sort(compareFn?: (a: T, b: T) => number): this;
 
+
+    /**
+     * Returns the elements of an array that meet the condition specified in a callback function.
+     * :: 콜백 함수(callback function)에 지정된 조건을 충족하는 배열의 요소를 반환
+     * @param predicate A function that accepts up to three arguments. The filter method calls the predicate function one time for each element in the array.
+     * : 최대 3개의 인수를 허용하는 함수
+     * :: 배열 각 요소에 대해 선언 함수(predicate function)를 한 번 호출함
+     * 
+     * @param thisArg An object to which the this keyword can refer in the predicate function. If thisArg is omitted, undefined is used as the this value.
+     * : 선언 함수(predicate function)에서 this 가 참조할 수 있는 개체
+     * :: 생략 시 this는 undefined 출력
+     */
+    filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];
+
+    /**
+     * Calls a defined callback function on each element of an array, and returns an array that contains the results.
+     * : 배열 각 요소에 대해 정의된 콜백 함수를 호출, 결과가 포함된 배열 반환
+     * 
+     * @param callbackfn A function that accepts up to three arguments. The map method calls the callbackfn function one time for each element in the array.
+     * : 최대 3개의 인수(argument)를 허용하는 함수
+     * :: 배열 각 요소에 대해 callbackfn 함수를 1번 호출
+     * 
+     * @param thisArg An object to which the this keyword can refer in the callbackfn function. If thisArg is omitted, undefined is used as the this value.
+     * : 'this'가 callbackfn 함수에서 참조할 수 있는 개체
+     * :: 생략 시 undefined 출력
+     */
+    map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[];
+
+    /**
+     * Determines whether all the members of an array satisfy the specified test.
+     * :: 배열의 모든 요소가 지정된 테스트의 충족여부를 결정함
+     * 
+     * @param predicate A function that accepts up to three arguments. The every method calls
+     * the predicate function for each element in the array until the predicate returns a value
+     * which is coercible to the Boolean value false, or until the end of the array.
+     * : 최대 3개 인수 허용
+     * : 선언 함수(predicate function)가 boolean false로 강제 변환할 수 있는 값을 반환할 때까지 / 배열 끝까지 
+     * : 배열 각 요소에 대해 선언 함수를 호출
+     * 
+     * @param thisArg An object to which the this keyword can refer in the predicate function.
+     * If thisArg is omitted, undefined is used as the this value.
+     * : 'this'가 선언함수에서 참조할 수 있는 객체
+     * : 생략 시 this는 undefined 출력
+     * 
+     */
+    every<S extends T>(predicate: (value: T, index: number, array: readonly T[]) => value is S, thisArg?: any): this is readonly S[];
+    every(predicate: (value: T, index: number, array: readonly T[]) => unknown, thisArg?: any): boolean;
+
+    /**
+     * Determines whether the specified callback function returns true for any element of an array.
+     * : 지정된 콜백함수가 배열 요소에 대해 true를 반환하는지 여부를 결정
+     * 
+     * @param predicate A function that accepts up to three arguments. The some method calls
+     * the predicate function for each element in the array until the predicate returns a value
+     * which is coercible to the Boolean value true, or until the end of the array.
+     * : 허용인수 3개
+     * : 선언 함수(predicate function)가 boolean true로 강제 변환할 수 있는 값을 반환할 때까지 / 배열 끝까지 
+     * : 배열 각 요소에 대해 선언 함수를 호출
+     * 
+     * @param thisArg An object to which the this keyword can refer in the predicate function.
+     * If thisArg is omitted, undefined is used as the this value.
+     */
+    some(predicate: (value: T, index: number, array: readonly T[]) => unknown, thisArg?: any): boolean;
+
+    /**
+     * Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
+     * : 배열 모든 요소에 대해 지정된 콜백 함수를 호출한다
+     * :: 반환값은 누적 결과, 반환값을 다음 콜백함수 호출 시 인수로 제공된다
+     * 
+     * @param callbackfn A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.
+     * : 4개의 인수 제공
+     * :: 배열 각 요소에 대해 callbackfn 1번 호출
+     * 
+     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.
+     * : 누적을 시작하는 초기값
+     * :: callbackfn 함수에 대한 첫번째 호출은 이 값을 인수로 제공 (배열 요소 대신)
+     */
+    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;
+    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;
 }
 
-/**
+interface String {
+    /**
      * Split a string into substrings using the specified separator and return them as an array.
+     * :: 지정된 구분 기호를 사용, 문자열을 부분 문자열로 분할하고 배열로 반환함
+     * 
      * @param splitter An object that can split a string.
+     * : 문자열을 분할할 수 있는 개체
+     * 
      * @param limit A value used to limit the number of elements returned in the array.
+     * : 배열에 반환되는 요소의 수를 제한하는 데 사용
+     * 
      */
- split(splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[];
+    split(splitter: { [Symbol.split](string: string, limit?: number): string[]; }, limit?: number): string[];
+}
+    
