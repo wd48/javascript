@@ -32,3 +32,37 @@ class :: fields, methods
 ======== 2021-12-08 ========
 array, map, set, list, single linked list, ...
 => 알로리즘 :: 효율성
+
+
+======== 2021-12-12 ========
+10강) JSON, 서버 통신의 시작
+1 Client와 Server 간 주고 받는지를 규약한 protocol => HTTP (Hypertext Transfer Protocol)
+받아오는 방법: AJAX (Asynchronous JavaScript and XML)
+
+2 XHR (XMLHttpRequest) : 간단히 서버에 데이터 요청하고 받아올 수 있음
+=> fetch() API 가능
+
+3 XML : Markup language - 데이터를 표현하는 방법
+~ 불필요 태그: file size, 가독성 떨어짐
+
+4 JSON (JavaScript Object Notation)
+- ECMAScript 3rd (1999)
+- Object{key:value}
+
+* 특징
+- simplest data interchange format
+- lightweight text-based structure
+- easy to read
+- key-value pairs
+- used for serialization and transmission of data between the networks conenction
+- independent programming language and platform
+:: 대부분의 언어에서 Object 직렬화 등을 지원된다
+
+공부방법
+1. Object의 serialize
+2. Obejct의 deserialize
+
+JSON Diff : JSON 디버깅
+JSON Beautifier : 받아온 JSON 포맷
+JSON Parser : JSON 타입을 Object 형태로 확인할 때 쓰기 좋음
+JSON Validator

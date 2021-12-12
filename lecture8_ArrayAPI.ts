@@ -211,7 +211,7 @@ interface Array<T>{
     /**
      * Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
      * : 배열 모든 요소에 대해 지정된 콜백 함수를 호출한다
-     * :: 반환값은 누적 결과, 반환값을 다음 콜백함수 호출 시 인수로 제공된다
+     * :: 반환값은 누적된 결과를 돌려주며, 반환값을 다음 콜백함수 호출 시 인수로 제공된다
      * 
      * @param callbackfn A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.
      * : 4개의 인수 제공
