@@ -119,7 +119,24 @@ const students = [
 }
 
 // Q9. compute students' average score
+
+/**
+ * reduce()
+ * 콜백과 시작값을 전달함
+ * > 배열의 모든 요소들의 값을 누적할 때 쓰면 좋다
+ * curr : 배열 하나씩 전달됨
+ * prev : return 값이 prev로 순차적 전달됨
+ */
 {
+  const result1 = students.reduce((prev, curr) => {
+    console.log('------------------');
+    console.log(prev);
+    console.log(curr);
+    return prev + curr.score;
+  },0);
+  console.log(`result1 결과 : ${result1}`);
+  // initial value 
+
   const result = students.reduce((prev, curr) => prev + curr.score, 0);
   console.log(result / students.length);
   // 호출1 reduce(prev, curr) => prev + curr.score, 0
@@ -130,6 +147,10 @@ const students = [
 // Q10. make a string containing all the scores
 // result should be: '45, 80, 90, 66, 88'
 {
+  // 1 학생들의 요소에서 점수를 배열로 만든다 : map - 새로운 배열로 return
+  // 1-1. (50점 이상만 나온다) : filter
+  // 2 join : 구분하여 원하는 출력형태를 갖춰서 return
+  
   const result = students
     .map((student) => student.score)
     .join(', ');
