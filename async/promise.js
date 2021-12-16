@@ -47,3 +47,52 @@ promise
 const fetchNumber = new Promise((resolve, reject) => {
     setTimeout(() => resolve(1), 1000);
 });
+
+fetchNumber
+.then(num => num * 2)
+.then(num => num * 3)
+.then(num => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(num - 1), 1000);
+    });
+})
+.then(num => console.log(num))
+
+
+// 4. Error Handling
+
+
+const getHen = () =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve('🐓'), 1000);
+    });
+
+const getEgg = hen =>
+    new Promise((resolve, reject) => {
+        // setTimeout(() => resolve(`${hen} => 🥚`), 1000);
+        setTimeout(() => reject(new Error(`Error! ${hen} => 🥚`)), 1000);
+        // 에러 핸들링을 하지 않았을 경우 Exception 함
+    });
+
+const cook = egg =>
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve(`${egg} => 🍳`), 1000);
+    });
+
+getHen()
+// .then(hen => getEgg(hen))
+// .then(egg => cook(egg))
+// .then(meal => console.log(meal));
+    .then(getEgg) // 한가지만 받아서 전달하는 경우에는 생략 가능
+    // .catch(error => {
+    //     return '🍞';
+    //     // 일부가 문제가 생겨도, 대신 전달해줘서 Promise 체인이 실행되도록 하는 처리
+    // })
+    .then(cook)
+    .then(console.log)
+    .catch(console.log);
+    // catch : 에러가 발생했지만 에러를 처리해서 마지막으로 내림
+/**
+ * 닭 받음 > 계란 만듦 > 계란으로 계란 후라이 만듦
+ */
+
