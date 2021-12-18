@@ -71,3 +71,8 @@ JSON Validator
 1 callback
 2 promise
 3 async await
+
+======== 2021-12-18 ========
+async await : 동기식 코드를 순서대로 작성하는 것처럼 작성을 도와줌
+syntactic sugar : 기존 promise 위 간편한 API 를 제공하는 것임
+
