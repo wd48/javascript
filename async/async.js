@@ -31,12 +31,12 @@ function delay(ms) {
 }
 
 async function getApple() {
-    await delay(3000);
+    await delay(2000);
     return '🍎';
 }
 
 async function getBanana() {
-    await delay(3000);
+    await delay(1000);
     return '🍌';
 }
 
@@ -50,22 +50,26 @@ async function getBanana() {
 // 많은 체이닝을 하면 시간이 오래걸림
 
 async function pickFruits(){
+    const applePromise = getApple();    // 만들자마자 실행 : 병렬적으로 실행됨
+    const bananaPromise = getBanana();  // 동시에 기능을 수행할 수 있는 경우에는..
     const apple = await getApple();
     const banana = await getBanana();
     return `${apple} + ${banana}`;
 }
+
 pickFruits().then(console.log);
 
 // 3. useful APIs ✨
+// all : 모든 promise를 병렬적으로 될때까지 다 받아줌
 function pickAllFruits() {
     return Promise.all([getApple(), getBanana()]).then(fruits =>
       fruits.join(' + ')
     );
   }
   pickAllFruits().then(console.log);
-  
+  // race : 가장 먼저 값을 return하는 메서드 결과를 내놓는다
   function pickOnlyOne() {
     return Promise.race([getApple(), getBanana()]);
   }
-  
+  console.log("================");
   pickOnlyOne().then(console.log);
